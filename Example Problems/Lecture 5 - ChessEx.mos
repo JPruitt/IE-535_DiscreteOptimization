@@ -1,0 +1,32 @@
+(!***************************
+Mosel Example Problems
+***************************!)
+model Chess1 !name of the model
+	
+uses "mmxprs" !gain access to the Xpress-Optimizer solver
+
+declarations
+XS: mpvar ! number of small sets produced
+XL: mpvar ! number of large sets produced
+end-declarations
+
+XS is_integer
+XL is_integer
+
+mc_time:= 3*XS + 2*XL <= 160
+! limit on available machine time
+wood:= XS + 3*XL <= 200
+! limit on available boxwood
+Profit:= 5*XS + 20*XL
+! defining the objective function
+maximize( Profit )
+! solve the objective function
+
+writeln
+writeln("Here are the IP results")
+writeln("Objective value is ",
+getobjval)
+writeln("Make ", getsol(XS),
+" small sets, and ",
+getsol(XL), " large sets")
+end-model

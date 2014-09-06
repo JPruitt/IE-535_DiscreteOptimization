@@ -1,0 +1,36 @@
+
+(!******************************
+* Mosel Example Problems
+******************************!)
+model Knapsack ! Start a new model
+uses "mmxprs"
+! Load optimizer library
+
+declarations
+Items=1..8 ! Index range for items
+	VALUE: array(Items) of real 
+	! Value of items
+	WEIGHT: array(Items) of real
+	! Weight of items
+WTMAX=100 ! Max weight allowed for haul
+x: array(Items) of mpvar
+! 1 if we take item i; 0 otherwise
+end-declarations
+
+! Item: 1 2 3 4 5 6 7 8
+VALUE := [10,200,150,100, 70, 40, 30, 5] 
+WEIGHT:= [10, 20, 30, 10, 20, 25, 40, 30]
+
+MaxVal:= sum(i in Items) VALUE(i)*x(i)
+! Objective: maximize total value
+WtMax:= sum(i in Items) WEIGHT(i)*x(i)<=
+WTMAX ! Weight restriction
+forall(i in Items) x(i) is_binary
+! All x are 0/1
+maximize(MaxVal)! Solve the MIP-problem
+
+! Print out the solution
+writeln("Objective: ", getobjval)
+forall(i in Items)
+writeln(" x(", i, "):", getsol(x(i)))
+end-model
