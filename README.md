@@ -9,10 +9,10 @@ Please save changes as a new file ending with your initials.
 
 File Extensions.
 ===========================
-.xlsx - Microsoft Excel
-.lg4 - LINGO
-.ltx - LINDO
-.mos - XPress Optimizer
+- .xlsx - Microsoft Excel
+- .lg4 - LINGO
+- .ltx - LINDO
+- .mos - XPress Optimizer
 
 
 Thanks,
